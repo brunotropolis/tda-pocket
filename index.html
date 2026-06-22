@@ -525,7 +525,7 @@ footer{background:#121A30;color:#9AA4C0}
 </script>
 <script>
 (function(){var p=new URLSearchParams(location.search);var keep=/^(utm_|fbclid|gclid|ttclid)/i;var pass=new URLSearchParams();p.forEach(function(v,k){if(keep.test(k))pass.append(k,v);});var s=pass.toString();if(!s)return;document.querySelectorAll('a.btn-comprar').forEach(function(a){a.href+=(a.href.indexOf('?')>-1?'&':'?')+s;});})();
-(function(){var T=window.trackMeta||function(ev,cd){if(window.fbq)fbq('track',ev,cd||{});};T('ViewContent',{content_name:'Guia da Pega',content_type:'product',value:67.00,currency:'BRL'});document.querySelectorAll('a.btn-comprar').forEach(function(a){a.addEventListener('click',function(){T('InitiateCheckout',{content_name:'Guia da Pega',value:67.00,currency:'BRL'});});});})();
+(function(){var T=window.trackMeta||function(ev,cd){if(window.fbq)fbq('track',ev,cd||{});};T('ViewContent',{content_name:'Guia da Pega',content_type:'product',value:67.00,currency:'BRL'});document.querySelectorAll('a.btn-comprar').forEach(function(a){a.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;if(a.getAttribute('data-ic'))return;a.setAttribute('data-ic','1');e.preventDefault();var dest=a.href;T('InitiateCheckout',{content_name:'Guia da Pega',value:67.00,currency:'BRL'});setTimeout(function(){window.location.href=dest;},250);});});})();
 </script>
 </body>
 </html>
