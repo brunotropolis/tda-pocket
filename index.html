@@ -9,6 +9,13 @@
 <!-- Meta Pixel (Guia da Pega - 2 pixels) -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+(function(){
+  /* Garante _fbp/_fbc ANTES do fbq init e do 1o evento. Sem isso, PageView/ViewContent disparavam antes do fbevents.js gravar o _fbp (race) -> chegavam na CAPI com fbp vazio -> match quality ~3.7 -> Meta nao atribuia no gerenciador. */
+  function gc(n){var m=document.cookie.match('(^|; )'+n+'=([^;]+)');return m?decodeURIComponent(m[2]):'';}
+  function sc(n,v){try{document.cookie=n+'='+v+'; path=/; max-age=7776000; domain=.manualdorecemnascido.com.br; SameSite=Lax';}catch(e){}}
+  if(!gc('_fbp')){sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(1e9+Math.random()*9e9));}
+  if(!gc('_fbc')){try{var fbclid=new URLSearchParams(location.search).get('fbclid');if(fbclid){sc('_fbc','fb.1.'+Date.now()+'.'+fbclid);}}catch(e){}}
+})();
 fbq('init','1662179248394613');fbq('init','1339270591500008');
 (function(){
   var CAPI='https://n8n-n8n.xktssy.easypanel.host/webhook/guia-capi';
