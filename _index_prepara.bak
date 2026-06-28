@@ -3,41 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-PTMJZNMZ');</script>
-<!-- End Google Tag Manager -->
-<!-- Meta Pixel (Guia da Pega - 2 pixels) -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-(function(){
-  /* Garante _fbp/_fbc ANTES do fbq init e do 1o evento. Sem isso, PageView/ViewContent disparavam antes do fbevents.js gravar o _fbp (race) -> chegavam na CAPI com fbp vazio -> match quality ~3.7 -> Meta nao atribuia no gerenciador. */
-  function gc(n){var m=document.cookie.match('(^|; )'+n+'=([^;]+)');return m?decodeURIComponent(m[2]):'';}
-  function sc(n,v){try{document.cookie=n+'='+v+'; path=/; max-age=7776000; domain=.manualdorecemnascido.com.br; SameSite=Lax';}catch(e){}}
-  if(!gc('_fbp')){sc('_fbp','fb.1.'+Date.now()+'.'+Math.floor(1e9+Math.random()*9e9));}
-  if(!gc('_fbc')){try{var fbclid=new URLSearchParams(location.search).get('fbclid');if(fbclid){sc('_fbc','fb.1.'+Date.now()+'.'+fbclid);}}catch(e){}}
-})();
-fbq('init','1662179248394613');fbq('init','1339270591500008');
-(function(){
-  var CAPI='https://n8n-n8n.xktssy.easypanel.host/webhook/guia-capi';
-  function gc(n){var m=document.cookie.match('(^|; )'+n+'=([^;]+)');return m?decodeURIComponent(m[2]):'';}
-  function eid(){return Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,10);}
-  var BOT=navigator.webdriver===true||/bot|crawl|spider|slurp|facebookexternalhit|facebookcatalog|whatsapp|telegram|preview|headless|lighthouse|pagespeed/i.test(navigator.userAgent||'');
-  window.trackMeta=function(ev,cd){
-    var id=eid();
-    try{ if(window.fbq) fbq('track',ev,cd||{},{eventID:id}); }catch(e){}
-    if(BOT) return;
-    try{
-      var p={event_name:ev,event_id:id,event_time:Math.floor(Date.now()/1000),event_source_url:location.href,fbp:gc('_fbp'),fbc:gc('_fbc'),user_agent:navigator.userAgent,custom_data:cd||{}};
-      var blob=new Blob([JSON.stringify(p)],{type:'text/plain'});
-      if(navigator.sendBeacon) navigator.sendBeacon(CAPI,blob);
-      else fetch(CAPI,{method:'POST',mode:'no-cors',keepalive:true,headers:{'Content-Type':'text/plain'},body:JSON.stringify(p)});
-    }catch(e){}
-  };
-  trackMeta('PageView');
-})();
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1662179248394613&ev=PageView&noscript=1"/><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1339270591500008&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel -->
 <title>Guia da Pega</title>
 <link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -331,16 +296,9 @@ footer{background:#121A30;color:#9AA4C0}
   .auth-bio p:first-child{line-height:1.55}
   .auth-bio p{line-height:1.7}
 }
-
-.auth-bio p.bio-lead{font-family:'Fraunces',serif;font-style:italic;color:#fff;font-size:1.2rem;line-height:1.35;margin-bottom:15px}
-@media(max-width:779px){
-  .auth-bio p.bio-lead{line-height:1.55}
-  .price-card .price-cta{font-size:1.12rem}
-}
 </style>
 </head>
 <body>
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTMJZNMZ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- DOBRA 1 : HEADLINE -->
 <section class="hero bg-blush">
@@ -395,8 +353,7 @@ footer{background:#121A30;color:#9AA4C0}
     <div class="auth-grid">
       <div class="auth-photo reveal"><img class="day-img" src="assets/day.webp" alt="Dayane Dos Anjos, consultora de amamentação" loading="lazy" decoding="async"></div>
       <div class="auth-bio reveal">
-        <p class="bio-lead">As primeiras semanas decidem o sucesso da amamentação, mas é justamente quando a mãe fica sozinha, sem uma orientação clara e objetiva.</p>
-        <p class="bio-lead">Quando a dor, a insegurança e o cansaço tomam conta, o desmame precoce acaba ganhando espaço em muitas famílias.</p>
+        <p>As primeiras semanas decidem o sucesso da amamentação, mas é justamente quando a mãe fica sozinha, sem uma orientação clara e objetiva. Quando a dor, a insegurança e o cansaço tomam conta, o desmame precoce acaba ganhando espaço em muitas famílias.</p>
         <p>Foi por isso que a Day criou um jeito de facilitar a pega para o bebê: para a dor aliviar na hora, e para o bebê passar a mamar de verdade, tirando mais leite, em menos tempo, e ficando satisfeito por intervalos mais longos.</p>
         
       </div>
@@ -467,11 +424,11 @@ footer{background:#121A30;color:#9AA4C0}
   <div class="narrow center">
     <h2 class="sec-title reveal">Hoje o Guia da Pega sai por apenas:</h2>
     <div class="price-card reveal">
-      <div class="price-cta">Corrija a amamentação com<br>uma condição super&nbsp;especial</div>
+      <div class="price-cta">Corrija a amamentação com uma condição super&nbsp;especial</div>
       <div class="big">R$ 67</div>
       <div class="cash">à vista no Pix</div>
       <div class="parcela">ou 12x de R$ 6,89</div>
-      <a href="https://payfast.greenn.com.br/136511/offer/sP4rpP?ch_id=24103&b_id_1=119667&b_offer_1=5MBzpG&b_id_2=119638&b_offer_2=zrQIbg" class="btn full btn-comprar">Quero amamentar sem dor</a>
+      <a href="#" class="btn full">Quero amamentar sem dor</a>
       <div class="badges"><span>✓ Acesso imediato</span><span>✓ Compra 100% segura</span><span>✓ Garantia de 7 dias</span></div>
     </div>
     <div class="howbox reveal">
@@ -492,7 +449,7 @@ footer{background:#121A30;color:#9AA4C0}
     <p class="reveal">Você provavelmente já foi numa consultora ou enfermeira, já comprou um ebook, já assistiu vídeo no YouTube. Muita gente tentou te ajudar, e mesmo assim você continua amamentando com dor, no sufoco, sem saber se o bebê mamou direito.</p>
     <p class="reveal">O problema não é você não ter tentado. É que ninguém te mostrou, de um jeito simples, como resolver a amamentação do seu bebê de uma vez por todas.</p>
     <p class="reveal">Aqui é o contrário: em poucos minutos você vê exatamente o que fazer, e já aplica na próxima mamada. São só 30 minutos, direto ao ponto, com o passo a passo mostrado com bebê de verdade.</p>
-    <div class="center" style="margin-top:30px"><a href="https://payfast.greenn.com.br/136511/offer/sP4rpP?ch_id=24103&b_id_1=119667&b_offer_1=5MBzpG&b_id_2=119638&b_offer_2=zrQIbg" class="btn btn-comprar">Quero amamentar sem dor</a></div>
+    <div class="center" style="margin-top:30px"><a href="#investimento" class="btn">Quero amamentar sem dor</a></div>
   </div>
 </section>
 
@@ -529,10 +486,6 @@ footer{background:#121A30;color:#9AA4C0}
     var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0.12});
     els.forEach(function(e){io.observe(e)});
   })();
-</script>
-<script>
-(function(){var p=new URLSearchParams(location.search);var keep=/^(utm_|fbclid|gclid|ttclid)/i;var pass=new URLSearchParams();p.forEach(function(v,k){if(keep.test(k))pass.append(k,v);});function gc(n){var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return m?m.pop():'';}var fbp=gc('_fbp');if(fbp)pass.append('fbp',fbp);var fbc=gc('_fbc');if(fbc)pass.append('fbc',fbc);try{pass.append('ua',navigator.userAgent);}catch(e){}var s=pass.toString();if(!s)return;document.querySelectorAll('a.btn-comprar').forEach(function(a){a.href+=(a.href.indexOf('?')>-1?'&':'?')+s;});})();
-(function(){var T=window.trackMeta||function(ev,cd){if(window.fbq)fbq('track',ev,cd||{});};T('ViewContent',{content_name:'Guia da Pega',content_type:'product',value:67.00,currency:'BRL'});document.querySelectorAll('a.btn-comprar').forEach(function(a){a.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;if(a.getAttribute('data-ic'))return;a.setAttribute('data-ic','1');e.preventDefault();var dest=a.href;T('InitiateCheckout',{content_name:'Guia da Pega',value:67.00,currency:'BRL'});setTimeout(function(){window.location.href=dest;},250);});});})();
 </script>
 </body>
 </html>
