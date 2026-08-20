@@ -479,7 +479,7 @@ footer{background:#121A30;color:#9AA4C0}
 <section class="section bg-roxo" id="investimento">
   <div class="narrow center">
     <h2 class="sec-title reveal">Hoje o Guia da Pega sai por apenas:</h2>
-    <div class="price-card reveal">
+    <div class="price-card reveal" data-sec="oferta">
       <div class="price-cta">Corrija a amamentação com<br>uma condição super&nbsp;especial</div>
       <div class="big">R$ 67</div>
       <div class="cash">à vista no Pix</div>
@@ -546,6 +546,23 @@ footer{background:#121A30;color:#9AA4C0}
 <script>
 (function(){var p=new URLSearchParams(location.search);var keep=/^(utm_|fbclid|gclid|ttclid)/i;var pass=new URLSearchParams();p.forEach(function(v,k){if(keep.test(k))pass.append(k,v);});function gc(n){var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return m?m.pop():'';}var fbp=gc('_fbp');if(fbp)pass.append('fbp',fbp);var fbc=gc('_fbc');if(fbc)pass.append('fbc',fbc);try{pass.append('ua',navigator.userAgent);}catch(e){}var s=pass.toString();if(!s)return;document.querySelectorAll('a.btn-comprar').forEach(function(a){a.href+=(a.href.indexOf('?')>-1?'&':'?')+s;});})();
 (function(){var T=window.trackMeta||function(ev,cd){if(window.fbq)fbq('track',ev,cd||{});};T('ViewContent',{content_name:'Guia da Pega',content_type:'product',value:67.00,currency:'BRL'});document.querySelectorAll('a.btn-comprar').forEach(function(a){a.addEventListener('click',function(e){if(e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;if(a.getAttribute('data-ic'))return;a.setAttribute('data-ic','1');e.preventDefault();var dest=a.href;T('InitiateCheckout',{content_name:'Guia da Pega',value:67.00,currency:'BRL'});setTimeout(function(){window.location.href=dest;},250);});});})();
+</script>
+<!-- funil-secao (Sherlock) — universal, auto-detecta pagina/versao. abriu->viu oferta->viu botao->ic -->
+<script>
+(function(){
+  var U='https://n8n-n8n.xktssy.easypanel.host/webhook/ab-ic', h=location.hostname, p=location.pathname;
+  var m=p.match(/(canguru|coala|coruja|leao|suricato)/);
+  var PAG=/dbpocket/.test(h)?'pocket':/tdapocket/.test(h)?'guia':/perfis/.test(h)?(m?'quiz-'+m[1]:'quiz'):(h.split('.')[0]||'pagina');
+  var vm=p.match(/\/v(\d+)(?:\/|$)/); var VER=vm?'v'+vm[1]:'base';
+  var BTN='.btn-comprar, a[href*="payfast"], a[href*="checkout"], a[href*="greenn"]';
+  function hit(ev){ try{ navigator.sendBeacon(U, new Blob([JSON.stringify({pagina:PAG,versao:VER,evento:ev})],{type:'text/plain'})); }catch(e){} }
+  var done={}; function once(ev){ if(done[ev])return; done[ev]=1; hit(ev); }
+  once('pageview');
+  function watch(sel,ev){ var el=document.querySelector(sel); if(!el)return; try{ var io=new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++){ if(es[i].isIntersecting){ once(ev); io.disconnect(); return; } } },{threshold:0.25}); io.observe(el); }catch(e){ once(ev); } }
+  watch('[data-sec="oferta"]','viu_oferta');
+  watch(BTN,'viu_botao');
+  document.addEventListener('click',function(e){ var t=e.target.closest(BTN); if(t) once('ic'); },true);
+})();
 </script>
 </body>
 </html>
